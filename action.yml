@@ -1,7 +1,7 @@
 # https://github.com/actions/javascript-action
 
 name: 'Decrypt Secrets'
-description: 'Decrypts secrets from a JSON file using gpg'
+description: 'Decrypt secrets from a JSON file using gpg'
 author: 'Zennon Gosalvez'
 inputs:
   secrets_file:
