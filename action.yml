@@ -1,0 +1,18 @@
+# https://github.com/actions/javascript-action
+
+name: 'Decrypt Secrets'
+description: 'Decrypts secrets from a JSON file using gpg'
+author: 'Zennon Gosalvez'
+inputs:
+  secrets_file:
+    description: 'The .json.gpg file. For example, `.github/workflows/secrets.json.gpg`'
+    required: true
+  map:
+    description: 'Describes the map between the environment variables and secret keys. For example, `SECRET_PASSWORD=PASSWORD,PASSPHRASE=passphrase`'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: unlock
+  color: gray-dark

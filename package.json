@@ -1,0 +1,31 @@
+{
+  "name": "github-actions-decrypt-secrets",
+  "version": "1.0.0",
+  "description": "Decrypts secrets from a JSON file using gpg",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "ncc build src/index.js -o dist --source-map --license licenses.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zgosalvez/github-actions-decrypt-secrets.git"
+  },
+  "keywords": [
+    "actions",
+    "node"
+  ],
+  "author": "Zennon Gosalvez",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^4.0.0",
+    "@actions/io": "^1.0.2",
+    "md5": "^2.3.0"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.25.1",
+    "eslint": "^7.15.0"
+  }
+}
