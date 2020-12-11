@@ -12,7 +12,8 @@ inputs:
     required: true
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'dist/main/index.js'
+  post: 'dist/post/index.js'
 branding:
   icon: unlock
   color: gray-dark
