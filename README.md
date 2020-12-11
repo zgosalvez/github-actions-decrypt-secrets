@@ -54,7 +54,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Decrypt secrets
-        uses: zgosalvez/github-actions-decrypt-secrets@v1.0.0
+        uses: zgosalvez/github-actions-decrypt-secrets@v1
         with:
             secrets_file: .github/workflows/secrets.json.gpg
             map: 'SECRET_PASSWORD=PASSWORD,PASSPHRASE=passphrase'
@@ -87,7 +87,7 @@ jobs:
         id: determine_environment
         run: echo "::set-output name=environment::${GITHUB_REF#refs/heads/}"
       - name: Decrypt ${{ steps.determine_environment.outputs.environment }} secrets
-        uses: zgosalvez/github-actions-decrypt-secrets@v1.0.0
+        uses: zgosalvez/github-actions-decrypt-secrets@v1
         with:
             secrets_file: .github/workflows/secrets/${{ steps.determine_environment.outputs.environment }}.json.gpg
             map: 'SECRET_PASSWORD=PASSWORD,PASSPHRASE=passphrase'
