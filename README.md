@@ -14,7 +14,7 @@ Create a workflow `.yml` file in your `.github/workflows` directory. An [example
 ### Inputs
 All of these inputs are required
 
-- `secrets_file`: The .json.gpg file. For example, `.github/workflows/secrets.json.gpg`
+- `secrets_file`: The `gpg` file. For example, `.github/workflows/secrets.json.gpg`
 - `map`: Describes the map between the environment variables and secret keys. For example, `SECRET_PASSWORD=PASSWORD,PASSPHRASE=passphrase`
 
 Additionally, you must set the `GPG_PASSPHRASE` environment variable to decrypt the JSON file.
