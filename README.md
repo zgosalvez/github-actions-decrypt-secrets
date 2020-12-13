@@ -48,7 +48,7 @@ name: Continuous Integration
 
 jobs:
   build:
-    name: Examaple
+    name: Example
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -78,7 +78,7 @@ name: Continuous Deployment
 
 jobs:
   build:
-    name: Examaple
+    name: Example
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
