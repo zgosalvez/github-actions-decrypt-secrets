@@ -12,7 +12,7 @@ This GitHub Action (written in JavaScript) allows you to leverage GitHub Actions
 Create a workflow `.yml` file in your `.github/workflows` directory. [Example workflows](#common-workflows) are available below. For more information, reference the GitHub Help Documentation for [Creating a workflow file](https://help.github.com/en/articles/configuring-a-workflow#creating-a-workflow-file).
 
 ### Inputs
-All of these inputs are required
+All of these inputs are required. For more information on these inputs, see the [Workflow syntax for GitHub Actions](https://docs.github.com/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepswith)
 
 - `secrets_file`: The `gpg` file. For example, `.github/workflows/secrets.json.gpg`
 - `map`: Describes the map between the environment variables and secret keys. For example, `SECRET_PASSWORD=PASSWORD,PASSPHRASE=passphrase`
@@ -20,7 +20,7 @@ All of these inputs are required
 Additionally, you must set the `GPG_PASSPHRASE` environment variable to decrypt the JSON file.
 
 ### Outputs
-None. The secrets are exported as environment variables. Refer to the `map` input.
+None. The secrets are exported as environment variables through the `map` input. For more information, see the [Environment variables](https://docs.github.com/actions/reference/environment-variables) documentation
 
 ### Common workflows
 
