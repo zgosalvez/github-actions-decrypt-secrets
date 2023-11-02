@@ -11,7 +11,7 @@ inputs:
     description: 'Describes the map between the environment variables and secret keys. For example, `SECRET_PASSWORD=PASSWORD,PASSPHRASE=passphrase`'
     required: true
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/main/index.js'
   post: 'dist/post/index.js'
 branding:
