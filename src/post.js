@@ -1,7 +1,7 @@
-const core = require('@actions/core');
-const io = require('@actions/io');
-const os = require('os');
-const path = require('path');
+import * as core from '@actions/core';
+import * as io from '@actions/io';
+import os from 'os';
+import path from 'path';
 
 function getSecretsFilePath() {
   const actionName = process.env.GITHUB_ACTION || 'github-actions-decrypt-secrets';
