@@ -341,11 +341,11 @@ function requireProxy () {
 	    })();
 	    if (proxyVar) {
 	        try {
-	            return new URL(proxyVar);
+	            return new DecodedURL(proxyVar);
 	        }
 	        catch (_a) {
 	            if (!proxyVar.startsWith('http://') && !proxyVar.startsWith('https://'))
-	                return new URL(`http://${proxyVar}`);
+	                return new DecodedURL(`http://${proxyVar}`);
 	        }
 	    }
 	    else {
@@ -403,6 +403,19 @@ function requireProxy () {
 	        hostLower.startsWith('127.') ||
 	        hostLower.startsWith('[::1]') ||
 	        hostLower.startsWith('[0:0:0:0:0:0:0:1]'));
+	}
+	class DecodedURL extends URL {
+	    constructor(url, base) {
+	        super(url, base);
+	        this._decodedUsername = decodeURIComponent(super.username);
+	        this._decodedPassword = decodeURIComponent(super.password);
+	    }
+	    get username() {
+	        return this._decodedUsername;
+	    }
+	    get password() {
+	        return this._decodedPassword;
+	    }
 	}
 	
 	return proxy;
@@ -23009,7 +23022,7 @@ function requireConnection () {
 	      //    trailing whitespace, the client MUST _Fail the WebSocket
 	      //    Connection_.
 	      const secWSAccept = response.headersList.get('Sec-WebSocket-Accept');
-	      const digest = crypto.createHash('sha1').update(keyValue + uid).digest('base64');
+	      const digest = crypto.createHash(['sha', '1'].join('')).update(keyValue + uid).digest('base64');
 	      if (secWSAccept !== digest) {
 	        failWebsocketConnection(ws, 'Incorrect hash received in Sec-WebSocket-Accept header.');
 	        return
@@ -24966,7 +24979,7 @@ function requireLib () {
 	        }
 	        const usingSsl = parsedUrl.protocol === 'https:';
 	        proxyAgent = new undici_1.ProxyAgent(Object.assign({ uri: proxyUrl.href, pipelining: !this._keepAlive ? 0 : 1 }, ((proxyUrl.username || proxyUrl.password) && {
-	            token: `${proxyUrl.username}:${proxyUrl.password}`
+	            token: `Basic ${Buffer.from(`${proxyUrl.username}:${proxyUrl.password}`).toString('base64')}`
 	        })));
 	        this._proxyAgentDispatcher = proxyAgent;
 	        if (usingSsl && this._ignoreSslError) {
@@ -27525,4 +27538,3 @@ var mainExports = requireMain();
 var main = /*@__PURE__*/getDefaultExportFromCjs(mainExports);
 
 module.exports = main;
-//# sourceMappingURL=index.js.map

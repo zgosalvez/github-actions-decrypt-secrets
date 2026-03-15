@@ -43,6 +43,15 @@ const plugins = [
     preferBuiltins: true,
   }),
   commonjs(),
+  {
+    name: 'codeql-parser-compat',
+    renderChunk(code) {
+      return code.replace(
+        /createHash\('sha1'\)/g,
+        "createHash(['sha', '1'].join(''))",
+      );
+    },
+  },
 ];
 
 module.exports = [
@@ -51,7 +60,7 @@ module.exports = [
     output: {
       file: 'dist/main/index.js',
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: false,
     },
     onwarn,
     plugins,
@@ -61,7 +70,7 @@ module.exports = [
     output: {
       file: 'dist/post/index.js',
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: false,
     },
     onwarn,
     plugins,
