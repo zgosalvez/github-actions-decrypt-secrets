@@ -7,11 +7,13 @@ const actionsIoPath = path.resolve(__dirname, 'node_modules/@actions/io/lib/io.j
 const actionsIoUtilPath = path.resolve(__dirname, 'node_modules/@actions/io/lib/io-util.js');
 const actionsCorePath = path.resolve(__dirname, 'node_modules/@actions/core/lib/core.js');
 const actionsOidcUtilsPath = path.resolve(__dirname, 'node_modules/@actions/core/lib/oidc-utils.js');
+const actionsModulesPathSegment = `${path.sep}node_modules${path.sep}@actions${path.sep}`;
 
 function onwarn(warning, warn) {
   if (
     warning.code === 'THIS_IS_UNDEFINED' &&
-    (warning.id === actionsIoPath || warning.id === actionsIoUtilPath)
+    typeof warning.id === 'string' &&
+    warning.id.includes(actionsModulesPathSegment)
   ) {
     return;
   }
@@ -36,6 +38,10 @@ const plugins = [
       {
         find: /^@actions\/io$/,
         replacement: actionsIoPath,
+      },
+      {
+        find: /^@actions\/core$/,
+        replacement: actionsCorePath,
       },
     ],
   }),
