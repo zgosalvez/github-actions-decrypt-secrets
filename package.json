@@ -20,8 +20,10 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^3.0.0",
-    "@actions/exec": "^1.0.4",
-    "@actions/io": "^3.0.2"
+    "@actions/exec": "^3.0.0",
+    "@actions/github": "^6.0.1",
+    "@actions/io": "^3.0.2",
+    "md5": "^2.3.0"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.1",
