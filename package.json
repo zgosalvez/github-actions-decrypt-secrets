@@ -4,8 +4,9 @@
   "description": "Decrypt secrets from a JSON file using gpg",
   "main": "dist/main/index.js",
   "scripts": {
+    "build": "node -e \"require('fs').rmSync('dist/main', { recursive: true, force: true }); require('fs').rmSync('dist/post', { recursive: true, force: true })\" && rollup -c",
     "lint": "eslint .",
-    "prepare": "ncc build src/main.js -o dist/main --source-map --license licenses.txt && ncc build src/post.js -o dist/post --source-map --license licenses.txt"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,13 @@
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.0.4",
-    "@actions/github": "^9.0.0",
-    "@actions/io": "^2.0.0",
-    "md5": "^2.3.0"
+    "@actions/io": "^3.0.2"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.4",
-    "eslint": "^9.39.2"
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.9",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "eslint": "^9.39.2",
+    "rollup": "^4.52.4"
   }
 }
