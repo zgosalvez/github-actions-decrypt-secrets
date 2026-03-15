@@ -1,10 +1,19 @@
-const core = require('@actions/core');
-const exec = require('@actions/exec');
-const fs = require('fs');
-const io = require('@actions/io');
-const md5 = require('md5');
-const os = require('os');
-const path = require('path');
+import * as core from '@actions/core';
+import * as exec from '@actions/exec';
+import fs from 'fs';
+import * as io from '@actions/io';
+import os from 'os';
+import path from 'path';
+
+function getSecretsFilePath() {
+  const actionName = process.env.GITHUB_ACTION || 'github-actions-decrypt-secrets';
+  const secretsPath = path.resolve(os.tmpdir(), actionName);
+
+  return {
+    secretsPath,
+    secretsFile: path.resolve(secretsPath, 'secrets.json'),
+  };
+}
 
 async function run() {
   try {
@@ -12,9 +21,8 @@ async function run() {
     const inputMap = core.getInput('map', { required: true });
 
     // https://docs.github.com/en/free-pro-team@latest/actions/reference/encrypted-secrets#limits-for-secrets
-    const secretsPath = path.resolve(os.homedir(), 'secrets');
     const gpgPath = path.resolve(inputSecretsFile);
-    const secretsFile = path.resolve(secretsPath, md5(inputSecretsFile + inputMap) + '.json');
+    const { secretsPath, secretsFile } = getSecretsFilePath();
     const passphrase = process.env.GPG_PASSPHRASE;
 
     core.setSecret(passphrase);
