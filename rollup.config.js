@@ -1,7 +1,10 @@
-const alias = require('@rollup/plugin-alias');
-const commonjs = require('@rollup/plugin-commonjs');
-const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const path = require('path');
+import alias from '@rollup/plugin-alias';
+import commonjs from '@rollup/plugin-commonjs';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const actionsIoPath = path.resolve(__dirname, 'node_modules/@actions/io/lib/io.js');
 const actionsIoUtilPath = path.resolve(__dirname, 'node_modules/@actions/io/lib/io-util.js');
@@ -60,7 +63,7 @@ const plugins = [
   },
 ];
 
-module.exports = [
+export default [
   {
     input: 'src/main.js',
     output: {
