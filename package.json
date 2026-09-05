@@ -30,7 +30,7 @@
     "@rollup/plugin-alias": "^6.0.0",
     "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "eslint": "^10.8.0",
+    "eslint": "^10.9.1",
     "rollup": "^4.63.0"
   }
 }
